@@ -1,9 +1,13 @@
 import { useEffect, useState } from "react";
 import "./App.css";
 import { Octokit } from "octokit";
+import Dropdown from "./components/Dropdown/Dropdown";
+import DropdownTypes from "./store/DropdownTypes.json";
 
 function App() {
   const [searchType, setSearchType] = useState();
+  const [language, setLanguage] = useState();
+  const [page, setPage] = useState();
 
   const callApi = async (type, language, query) => {
     let octokit = new Octokit({
@@ -22,45 +26,29 @@ function App() {
     console.log("RESPONSE -> ", response);
   };
 
-  const shouldButtonDisable = () => {
-    if (searchType !== undefined) {
-      return false;
+  const setFiltersState = (value, type) => {
+    switch (type) {
+      case "default":
+        setSearchType(value);
+        break;
+      case "language":
+        setLanguage(value);
+        break;
+      case "page":
+        setPage(value);
+        break;
+      default:
+        console.log("Wrong type");
     }
-
-    return true;
   };
-
-  // useEffect(() => {
-  //   callApi("users", "python", "BibekDas619");
-  // }, []);
-
-  useEffect(() => {
-    console.log("SEARCH TYPE -> ", searchType);
-  }, [searchType]);
 
   return (
     <div className="App">
-      <label htmlFor="searchType">Select search type: </label>
-      <select
-        id="searchType"
-        defaultValue={"DEFAULT"}
-        onChange={(event) => setSearchType(event.target.value)}
-      >
-        <option value="DEFAULT" disabled>
-          Choose a search type ...
-        </option>
-        <option value="code">Code</option>
-        <option value="commits">Commits</option>
-        <option value="users">Users</option>
-        <option value="repositories">Repositories</option>
-      </select>
-      <button
-        type="button"
-        disabled={shouldButtonDisable()}
-        onClick={() => callApi(searchType, "python", "BibekDas619")}
-      >
-        Search
-      </button>
+      <div className="filtersAndSearch">
+        {DropdownTypes.map((itm) => (
+          <Dropdown type={itm} setFiltersState={setFiltersState} />
+        ))}
+      </div>
     </div>
   );
 }
