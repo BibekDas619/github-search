@@ -57,7 +57,7 @@ function App() {
       <button
         type="button"
         disabled={shouldButtonDisable()}
-        onClick={() => callApi(searchType, "python", "BibekDas619")}
+        onClick={() => callApi(searchType,"python", "BibekDas619")}
       >
         Search
       </button>
