@@ -12,7 +12,7 @@
 
 .filtersAndSearch {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
 }
 
 @media (prefers-reduced-motion: no-preference) {
