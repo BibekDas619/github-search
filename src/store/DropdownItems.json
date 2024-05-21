@@ -1,0 +1,5 @@
+{
+  "default": ["Code", "Commits", "Users", "Repositories"],
+  "language": ["C", "C++", "Java", "Python", "Javascript"],
+  "page": [5, 10, 15]
+}
