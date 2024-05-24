@@ -1,7 +1,20 @@
 import "./Dropdown.css";
 import DropdownItems from "../../store/DropdownItems.json";
 
-const Dropdown = ({ type, setFiltersState }) => {
+const Dropdown = ({
+  type,
+  setFiltersState,
+  disableDropdowns,
+  disableOtherDropdowns,
+}) => {
+  const determineDropdownDisable = () => {
+    if (disableDropdowns === true) {
+      return disableDropdowns;
+    } else {
+      return disableOtherDropdowns && type !== "default";
+    }
+  };
+
   return (
     <div className="dropdown">
       <label htmlFor="searchType">
@@ -10,7 +23,10 @@ const Dropdown = ({ type, setFiltersState }) => {
       <select
         id="searchType"
         defaultValue={"DEFAULT"}
-        onChange={(event) => setFiltersState(event.target.value, type)}
+        disabled={determineDropdownDisable()}
+        onChange={(event) =>
+          setFiltersState(event.target.value.toLowerCase(), type)
+        }
       >
         <option value="DEFAULT" disabled>
           Choose a {type === "default" ? "search type" : type} ...

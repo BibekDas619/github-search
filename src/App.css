@@ -1,8 +1,17 @@
 .App {
   padding-top: 10px;
   text-align: center;
-  display: flex;
+  /* display: flex; */
   justify-content: center;
+ 
+}
+body
+{
+  background-image: url('https://github.blog/wp-content/uploads/2023/05/1200x630-GitHub-Uni_23-Unfurl.png?fit=1200%2C630');
+  height: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .App-logo {
@@ -10,10 +19,6 @@
   pointer-events: none;
 }
 
-.filtersAndSearch {
-  display: flex;
-  flex-direction: row;
-}
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
@@ -43,4 +48,55 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.header{
+  font-family:"Poetsen One" , sanserif;
+  font-weight:400;
+  font-style:normal;
+  color: white;
+  
+}
+
+.filtersAndSearch{
+
+  margin-top: 10px;
+  font-family:"Poetsen One" , sanserif;
+  font-weight:400;
+  font-style:normal;
+  color: white;
+  
+}
+button{
+  border: 1px solid white;
+  border-radius: 10px;
+  color: white;
+  background-color: transparent;
+  height: 35px;
+  width: 70px;
+  font-family: 'Times New Roman', Times, serif;
+  font-weight: bold;
+  font-size:15px;
+}
+
+input
+{
+  margin: 20px;
+  font-family: 'Times New Roman', Times, serif;
+  font-weight: bold;
+  font-size:15px;
+}
+
+select{
+  margin:30px;
+  font-family:"Poetsen One" , sanserif;
+  font-weight:400;
+  font-style:normal;
+}
+
+button:hover{
+  cursor: pointer;
+  height:40px;
+  width:75px;
+  background-color: green;
 }
