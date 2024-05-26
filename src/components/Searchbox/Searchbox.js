@@ -3,14 +3,13 @@ import "./Searchbox.css";
 
 const Searchbox = ({ searchPhrase, setSearchPhrase }) => {
   return (
-    <>
-      <input
+        <input
         type="text"
         placeholder="Enter anything to search.."
         value={searchPhrase}
         onChange={(event) => setSearchPhrase(event.target.value)}
       />
-    </>
+  
   );
 };
 

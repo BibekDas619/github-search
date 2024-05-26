@@ -46,6 +46,7 @@ function App() {
   };
 
   const callApi = async (type, language, query, page) => {
+    //Ocktokit is used to call a github Api.It integrates Api client, App client & Action client.
     let octokit = new Octokit({
       auth: process.env.REACT_APP_GITHUB_AUTH_TOKEN,
     });
@@ -81,7 +82,12 @@ function App() {
 
   return (
     <div className="App">
+      <div className="header">
+      <center> <h1> <p>Git Hub Search</p></h1></center>
+        <br/> 
+      </div> 
       <div className="filtersAndSearch">
+        
         <Searchbox
           searchPhrase={searchPhrase}
           setSearchPhrase={setSearchPhrase}
