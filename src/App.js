@@ -4,6 +4,7 @@ import { Octokit } from "octokit";
 import Dropdown from "./components/Dropdown/Dropdown";
 import DropdownTypes from "./store/DropdownTypes.json";
 import Searchbox from "./components/Searchbox/Searchbox";
+import DisplayResult from "./components/DisplayResults/DisplayResults";
 
 function App() {
   const [searchType, setSearchType] = useState();
@@ -13,6 +14,7 @@ function App() {
   const [disableDropdowns, setDisableDropdowns] = useState(false);
   const [disableOtherDropdowns, setDisableOtherDropdowns] = useState(false);
   const [disableApiCall, setDisableApiCall] = useState(true);
+  const [apiResponse, setApiResponse] = useState([]);
 
   useEffect(() => {
     if (searchPhrase === "") {
@@ -61,6 +63,7 @@ function App() {
     });
 
     console.log("RESPONSE -> ", response);
+    setApiResponse(response.data.items);
     resetFiltersAndSearchbox();
   };
 
@@ -83,11 +86,16 @@ function App() {
   return (
     <div className="App">
       <div className="header">
-      <center> <h1> <p>Git Hub Search</p></h1></center>
-        <br/> 
-      </div> 
+        <center>
+          {" "}
+          <h1>
+            {" "}
+            <p>Git Hub Search</p>
+          </h1>
+        </center>
+        <br />
+      </div>
       <div className="filtersAndSearch">
-        
         <Searchbox
           searchPhrase={searchPhrase}
           setSearchPhrase={setSearchPhrase}
@@ -107,6 +115,11 @@ function App() {
         >
           Search..
         </button>
+      </div>
+
+      <div className="displayResults">
+        {apiResponse.length > 0 &&
+          apiResponse.map((itm) => <DisplayResult data={itm} />)}
       </div>
     </div>
   );
